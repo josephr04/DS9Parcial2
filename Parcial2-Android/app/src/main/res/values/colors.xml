@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#1A5F7A</color>
+    <color name="primary_dark">#0D3B4A</color>
+    <color name="primary_light">#4A8FAA</color>
+    <color name="gray">#757575</color>
+    <color name="gray_light">#E0E0E0</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Colores para gráficas y dashboard -->
+    <color name="chart_green">#4CAF50</color>
+    <color name="chart_red">#F44336</color>
+    <color name="chart_orange">#FF9800</color>
+    <color name="chart_blue">#2196F3</color>
+
+    <color name="fortaleza_debil">#E53935</color>
+    <color name="fortaleza_regular">#FB8C00</color>
+    <color name="fortaleza_aceptable">#7CB342</color>
+    <color name="fortaleza_segura">#2E7D32</color>
 </resources>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF0F0F5"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="25dp">
+
+        <!-- Toolbar superior -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/logo_utp"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Gestión de Incidentes"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#7B1FA2" />
+        </LinearLayout>
+
+        <!-- Tarjeta principal -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Crear Cuenta"
+                    android:textSize="26sp"
+                    android:textStyle="bold"
+                    android:textColor="#7B1FA2" />
+
+                <!-- Subtítulo -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Únete a la plataforma tecnológica de la UTP."
+                    android:textSize="14sp"
+                    android:textColor="#888888" />
+
+                <!-- NOMBRE COMPLETO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="NOMBRE COMPLETO"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.08"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etNombreCompleto"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:paddingHorizontal="14dp"
+                    android:hint="Ej. Juan Pérez"
+                    android:inputType="textPersonName|textCapWords"
+                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:imeOptions="actionNext" />
+
+                <!-- CORREO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="CORREO INSTITUCIONAL"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.08"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp">
+
+                    <EditText
+                        android:id="@+id/etCorreo"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="usuario@utp.ac.pa"
+                        android:inputType="textEmailAddress"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:imeOptions="actionNext" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_email"
+                        android:alpha="0.4" />
+                </LinearLayout>
+
+                <!-- CONTRASEÑA -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="CONTRASEÑA"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.08"
+                    android:textStyle="bold" />
+
+                <!-- Campo contraseña con toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp">
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="••••••••"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:imeOptions="actionNext" />
+
+                    <ImageView
+                        android:id="@+id/btnTogglePassword"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_visibility_off"
+                        android:alpha="0.4"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
+
+                <!-- CONFIRMAR CONTRASEÑA -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="CONFIRMAR CONTRASEÑA"
+                    android:textSize="11sp"
+                    android:textColor="#888888"
+                    android:letterSpacing="0.08"
+                    android:textStyle="bold" />
+
+                <!-- Campo confirmar contraseña con toggle -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp">
+
+                    <EditText
+                        android:id="@+id/etConfirmarPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="••••••••"
+                        android:inputType="textPassword"
+                        android:textSize="15sp"
+                        android:textColor="#333333"
+                        android:imeOptions="actionDone" />
+
+                    <ImageView
+                        android:id="@+id/btnToggleConfirmPassword"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_visibility_off"
+                        android:alpha="0.4"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
+
+                <!-- Progress bar -->
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:indeterminateTint="#7B1FA2" />
+
+                <!-- Botón registrarse -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRegistrarse"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Registrarse"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#6A0DAD"
+                    app:cornerRadius="12dp" />
+
+                <!-- Divisor -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="#EEEEEE" />
+
+                <!-- Ya tienes cuenta -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¿Ya tienes una cuenta? "
+                        android:textSize="14sp"
+                        android:textColor="#888888" />
+
+                    <TextView
+                        android:id="@+id/txtIniciarSesion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inicia Sesión"
+                        android:textSize="14sp"
+                        android:textColor="#7B1FA2"
+                        android:textStyle="bold"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="28dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UNIVERSIDAD TECNOLÓGICA DE PANAMÁ"
+                android:textSize="10sp"
+                android:textColor="#AAAAAA"
+                android:letterSpacing="0.1"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_school"
+                    android:alpha="0.35"
+                    android:layout_marginHorizontal="10dp" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_image"
+                    android:alpha="0.35"
+                    android:layout_marginHorizontal="10dp" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_security"
+                    android:alpha="0.35"
+                    android:layout_marginHorizontal="10dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

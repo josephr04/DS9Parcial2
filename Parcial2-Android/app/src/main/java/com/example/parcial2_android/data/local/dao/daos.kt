@@ -1,7 +1,7 @@
-package com.universidad.incidencias.data.local.dao
+package com.example.parcial2_android.data.local.dao
 
 import androidx.room.*
-import com.universidad.incidencias.data.local.entidad.*
+import com.example.parcial2_android.data.local.entidad.*
 import kotlinx.coroutines.flow.Flow
 
 // ─────────────────────────────────────────────

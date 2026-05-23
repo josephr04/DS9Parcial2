@@ -1,9 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Base.Theme.Parcial2Android" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Colores principales -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/primary_light</item>
+        <item name="colorSecondaryVariant">@color/primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+        <!-- Color de fondo -->
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- Color de la status bar -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
     </style>
 
     <style name="Theme.Parcial2Android" parent="Base.Theme.Parcial2Android" />
+
 </resources>

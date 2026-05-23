@@ -1,4 +1,4 @@
-package com.universidad.incidencias.data.local.entidad
+package com.example.parcial2_android.data.local.entidad
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

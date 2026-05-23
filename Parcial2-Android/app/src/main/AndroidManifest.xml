@@ -11,15 +11,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Parcial2Android">
+
+        <!-- LoginActivity como pantalla principal (LAUNCHER) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- RegistroActivity -->
+        <activity
+            android:name=".ui.auth.RegistroActivity"
+            android:exported="false" />
+
+        <!-- MainActivity (Dashboard) -->
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.auth.RecuperarContrasenaActivity"
+            android:label="Recuperar Contraseña"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

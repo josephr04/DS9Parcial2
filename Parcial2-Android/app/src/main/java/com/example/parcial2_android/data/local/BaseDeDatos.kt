@@ -1,12 +1,12 @@
-package com.universidad.incidencias.data.local
+package com.example.parcial2_android.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.universidad.incidencias.data.local.dao.*
-import com.universidad.incidencias.data.local.entidad.*
+import com.example.parcial2_android.data.local.dao.*
+import com.example.parcial2_android.data.local.entidad.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
