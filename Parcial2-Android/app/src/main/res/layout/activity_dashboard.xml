@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F0F8">
+
+    <!-- APP BAR -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Logo UTP"
+                android:src="@drawable/logo_utp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Dashboard Estadístico"
+                android:textColor="#6A0DAD"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- CONTENT -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="72dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visión general del estado operativo de la institución."
+                android:textSize="13sp"
+                android:textColor="@color/gray_inactive"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Tarjetas de estadísticas -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:layout_marginBottom="16dp">
+
+                <!-- Total -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_background">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_nav_incidencias"
+                            app:tint="@color/purple_primary"
+                            android:layout_marginBottom="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TOTAL"
+                            android:textSize="11sp"
+                            android:textColor="@color/gray_inactive"
+                            android:letterSpacing="0.05" />
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/purple_primary" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Pendientes -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_background">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_notificaciones"
+                            app:tint="#E24B4A"
+                            android:layout_marginBottom="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PENDIENTES"
+                            android:textSize="11sp"
+                            android:textColor="@color/gray_inactive"
+                            android:letterSpacing="0.05" />
+                        <TextView
+                            android:id="@+id/tvPendientes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#E24B4A" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- En Revisión -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_background">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_dashboard"
+                            app:tint="#BA7517"
+                            android:layout_marginBottom="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EN REVISIÓN"
+                            android:textSize="11sp"
+                            android:textColor="@color/gray_inactive"
+                            android:letterSpacing="0.05" />
+                        <TextView
+                            android:id="@+id/tvEnRevision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#BA7517" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Resueltas -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="6dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/card_background">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="14dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_nav_perfil"
+                            app:tint="#3B6D11"
+                            android:layout_marginBottom="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RESUELTAS"
+                            android:textSize="11sp"
+                            android:textColor="@color/gray_inactive"
+                            android:letterSpacing="0.05" />
+                        <TextView
+                            android:id="@+id/tvResueltas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:textColor="#3B6D11" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+            <!-- Card: Incidencias por Categoría -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incidencias por Categoría"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Infraestructura dañada -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Infraestructura dañada" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctInfraestructura"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbInfraestructura"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Problemas eléctricos -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Problemas eléctricos" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctElectricos"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbElectricos"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Equipos de laboratorio -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Equipos de laboratorio" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctLaboratorio"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbLaboratorio"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Fallas de conectividad -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Fallas de conectividad" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctConectividad"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbConectividad"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Problemas de seguridad -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Problemas de seguridad" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctSeguridad"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbSeguridad"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Emergencias académicas -->
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="4dp">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Emergencias académicas" android:textSize="13sp"
+                            android:textColor="@color/gray_inactive"/>
+                        <TextView android:id="@+id/tvPctAcademicas"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0%" android:textSize="13sp" android:textStyle="bold"
+                            android:textColor="@color/purple_primary"/>
+                    </LinearLayout>
+                    <ProgressBar android:id="@+id/pbAcademicas"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent" android:layout_height="8dp"
+                        android:progressDrawable="@drawable/progress_bar_purple"
+                        android:max="100" android:progress="0" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card: Distribución por Estado -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Distribución por Estado"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/purple_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp" />
+
+                    <!-- Leyenda -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="12dp">
+
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:layout_marginBottom="6dp">
+                            <View android:layout_width="12dp" android:layout_height="12dp"
+                                android:background="#E24B4A" android:layout_marginEnd="8dp" />
+                            <TextView android:id="@+id/tvLeyendaPendientes"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Pendientes (0%)" android:textSize="13sp"
+                                android:textColor="@color/gray_inactive"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical"
+                            android:layout_marginBottom="6dp">
+                            <View android:layout_width="12dp" android:layout_height="12dp"
+                                android:background="#BA7517" android:layout_marginEnd="8dp" />
+                            <TextView android:id="@+id/tvLeyendaRevision"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="En Revisión (0%)" android:textSize="13sp"
+                                android:textColor="@color/gray_inactive"/>
+                        </LinearLayout>
+
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:gravity="center_vertical">
+                            <View android:layout_width="12dp" android:layout_height="12dp"
+                                android:background="#3B6D11" android:layout_marginEnd="8dp" />
+                            <TextView android:id="@+id/tvLeyendaResueltas"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="Resueltas (0%)" android:textSize="13sp"
+                                android:textColor="@color/gray_inactive"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BOTTOM NAV -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:menu="@menu/menu_bottom_nav"
+        app:itemActiveIndicatorStyle="@style/ActiveIndicatorStyle"
+        app:itemIconTint="@color/nav_icon_color"
+        app:itemTextColor="@color/nav_text_color"
+        app:labelVisibilityMode="labeled" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

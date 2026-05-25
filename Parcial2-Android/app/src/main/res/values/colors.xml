@@ -25,4 +25,8 @@
     <color name="purple_input_bg">#F8F0FF</color>
     <color name="purple_stroke">#E0D0F0</color>
     <color name="red_error">#FF4444</color>
+
+    <color name="background_light">#F5F0FA</color>
+    <color name="card_background">#F3E8FF</color>
+    <color name="gray_inactive">#9E9E9E</color>
 </resources>

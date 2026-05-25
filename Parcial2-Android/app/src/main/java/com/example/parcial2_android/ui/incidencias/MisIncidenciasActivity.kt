@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial2_android.R
 import com.example.parcial2_android.databinding.ActivityMisIncidenciasBinding
 import com.example.parcial2_android.ui.adapters.IncidenciasAdapter
+import com.example.parcial2_android.ui.dashboard.DashboardActivity
 import com.example.parcial2_android.ui.perfil.PerfilActivity
 import kotlinx.coroutines.launch
 
@@ -180,7 +181,8 @@ class MisIncidenciasActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_incidencias -> true // ya estamos aquí
                 R.id.nav_dashboard -> {
-                    // startActivity(Intent(this, DashboardActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_notificaciones -> {

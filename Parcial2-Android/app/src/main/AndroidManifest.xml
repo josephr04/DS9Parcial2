@@ -79,6 +79,8 @@
 
         <activity android:name=".ui.perfil.PerfilActivity" />
 
+        <activity android:name=".ui.dashboard.DashboardActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

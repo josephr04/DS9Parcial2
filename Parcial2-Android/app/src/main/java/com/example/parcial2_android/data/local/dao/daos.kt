@@ -75,6 +75,21 @@ interface DaoCategoria {
 // ─────────────────────────────────────────────
 @Dao
 interface DaoIncidencia {
+    @Query("""
+    SELECT c.nombre, COUNT(i.id) AS total
+    FROM categorias c
+    LEFT JOIN incidencias i ON i.categoria_id = c.id
+    GROUP BY c.id
+    ORDER BY total DESC
+""")
+    suspend fun contarPorCategoria(): List<ConteoCategoriaNombre>
+
+    @Query("SELECT COUNT(*) FROM incidencias")
+    suspend fun contarTodas(): Int
+
+    @Query("SELECT COUNT(*) FROM incidencias WHERE estado = :estado")
+    suspend fun contarPorEstado(estado: String): Int
+
     @Query("SELECT EXISTS(SELECT 1 FROM categorias WHERE id = :categoriaId)")
     suspend fun verificarCategoriaExiste(categoriaId: Int): Boolean
 
@@ -145,6 +160,11 @@ interface DaoIncidencia {
 /** Resultado parcial para el dashboard. */
 data class ConteoCategoria(
     @ColumnInfo(name = "categoria_id") val categoriaId: Int,
+    @ColumnInfo(name = "total") val total: Int
+)
+
+data class ConteoCategoriaNombre(
+    @ColumnInfo(name = "nombre") val nombre: String,
     @ColumnInfo(name = "total") val total: Int
 )
 

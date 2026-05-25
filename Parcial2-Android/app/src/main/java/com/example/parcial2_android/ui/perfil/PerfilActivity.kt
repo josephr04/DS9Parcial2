@@ -10,6 +10,7 @@ import com.example.parcial2_android.utils.SessionManager
 import com.example.parcial2_android.databinding.ActivityPerfilBinding
 import com.example.parcial2_android.R
 import com.example.parcial2_android.ui.auth.LoginActivity
+import com.example.parcial2_android.ui.dashboard.DashboardActivity
 import com.example.parcial2_android.ui.incidencias.MisIncidenciasActivity
 import com.example.parcial2_android.ui.incidencias.NuevaIncidenciaActivity
 import kotlinx.coroutines.Dispatchers
@@ -95,7 +96,8 @@ class PerfilActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_dashboard -> {
-                    // startActivity(Intent(this, DashboardActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_notificaciones -> {
