@@ -52,7 +52,10 @@ class NuevaIncidenciaViewModel(private val app: Application) : AndroidViewModel(
                 _rutasFoto.clear()
                 incidencia?.rutaFoto?.let { ruta ->
                     if (ruta.isNotBlank()) {
-                        _rutasFoto.add(ruta)
+                        // Separar por coma y agregar cada una
+                        ruta.split(",").forEach { rutaIndividual ->
+                            if (rutaIndividual.isNotBlank()) _rutasFoto.add(rutaIndividual.trim())
+                        }
                     }
                 }
             } catch (e: Exception) {
@@ -93,7 +96,7 @@ class NuevaIncidenciaViewModel(private val app: Application) : AndroidViewModel(
                 android.util.Log.d("NUEVA_INC", "Categoría ID mapeado: $categoriaId")
 
                 val ahora = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).format(Date())
-                val rutaFoto = _rutasFoto.firstOrNull()
+                val rutaFoto = if (_rutasFoto.isEmpty()) null else _rutasFoto.joinToString(",")
 
                 val incidencia = EntidadIncidencia(
                     usuarioId = usuarioIdActivo,
@@ -150,7 +153,7 @@ class NuevaIncidenciaViewModel(private val app: Application) : AndroidViewModel(
                     descripcion      = descripcion,
                     prioridad        = prioridad,
                     estado           = original?.estado ?: "PENDIENTE",
-                    rutaFoto         = _rutasFoto.firstOrNull(),
+                    rutaFoto = if (_rutasFoto.isEmpty()) null else _rutasFoto.joinToString(","),
                     latitud          = latitud ?: this@NuevaIncidenciaViewModel.latitud,
                     longitud         = longitud ?: this@NuevaIncidenciaViewModel.longitud,
                     creadoEn         = original?.creadoEn ?: ahora,

@@ -92,7 +92,8 @@
                     android:inputType="textPersonName|textCapWords"
                     android:textSize="15sp"
                     android:textColor="#333333"
-                    android:imeOptions="actionNext" />
+                    android:imeOptions="actionNext"
+                    android:textColorHint="#999999"/>
 
                 <!-- CORREO -->
                 <TextView
@@ -124,7 +125,8 @@
                         android:inputType="textEmailAddress"
                         android:textSize="15sp"
                         android:textColor="#333333"
-                        android:imeOptions="actionNext" />
+                        android:imeOptions="actionNext"
+                        android:textColorHint="#999999"/>
 
                     <ImageView
                         android:layout_width="22dp"
@@ -164,7 +166,8 @@
                         android:inputType="textPassword"
                         android:textSize="15sp"
                         android:textColor="#333333"
-                        android:imeOptions="actionNext" />
+                        android:imeOptions="actionNext"
+                        android:textColorHint="#999999"/>
 
                     <ImageView
                         android:id="@+id/btnTogglePassword"
@@ -207,7 +210,8 @@
                         android:inputType="textPassword"
                         android:textSize="15sp"
                         android:textColor="#333333"
-                        android:imeOptions="actionDone" />
+                        android:imeOptions="actionDone"
+                        android:textColorHint="#999999"/>
 
                     <ImageView
                         android:id="@+id/btnToggleConfirmPassword"
@@ -277,54 +281,6 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <!-- Footer -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:paddingVertical="28dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="UNIVERSIDAD TECNOLÓGICA DE PANAMÁ"
-                android:textSize="10sp"
-                android:textColor="#AAAAAA"
-                android:letterSpacing="0.1"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_school"
-                    android:alpha="0.35"
-                    android:layout_marginHorizontal="10dp" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_image"
-                    android:alpha="0.35"
-                    android:layout_marginHorizontal="10dp" />
-
-                <ImageView
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/ic_security"
-                    android:alpha="0.35"
-                    android:layout_marginHorizontal="10dp" />
-
-            </LinearLayout>
-        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

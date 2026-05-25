@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parcial2_android.R
 import com.example.parcial2_android.databinding.ActivityMisIncidenciasBinding
 import com.example.parcial2_android.ui.adapters.IncidenciasAdapter
+import com.example.parcial2_android.ui.auth.LoginActivity
 import com.example.parcial2_android.ui.dashboard.DashboardActivity
+import com.example.parcial2_android.ui.notificaciones.NotificacionesActivity
 import com.example.parcial2_android.ui.perfil.PerfilActivity
+import com.example.parcial2_android.utils.SessionManager
 import kotlinx.coroutines.launch
 
 class MisIncidenciasActivity : AppCompatActivity() {
@@ -28,6 +31,16 @@ class MisIncidenciasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sesion = SessionManager(applicationContext)
+        if (!sesion.estaLogueado) {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+            return
+        }
+
         binding = ActivityMisIncidenciasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -186,7 +199,8 @@ class MisIncidenciasActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_notificaciones -> {
-                    // startActivity(Intent(this, NotificacionesActivity::class.java))
+                    startActivity(Intent(this, NotificacionesActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_perfil -> {

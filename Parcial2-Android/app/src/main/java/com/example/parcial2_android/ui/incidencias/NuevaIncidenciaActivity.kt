@@ -468,9 +468,9 @@ class NuevaIncidenciaActivity : AppCompatActivity() {
 
             viewModel.limpiarImagenes()
             if (!incidencia.rutaFoto.isNullOrBlank()) {
-                val archivo = File(incidencia.rutaFoto)
-                if (archivo.exists()) {
-                    viewModel.agregarImagen(incidencia.rutaFoto)
+                incidencia.rutaFoto.split(",").forEach { ruta ->
+                    val archivo = File(ruta.trim())
+                    if (archivo.exists()) viewModel.agregarImagen(ruta.trim())
                 }
             }
             actualizarListaImagenes()

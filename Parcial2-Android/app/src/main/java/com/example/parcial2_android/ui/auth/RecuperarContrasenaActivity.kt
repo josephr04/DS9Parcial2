@@ -62,6 +62,10 @@ class RecuperarContrasenaActivity : AppCompatActivity() {
 
     private lateinit var pasosDots: Array<View>
 
+    // Agrega estas dos junto a las demás vistas del paso 3
+    private lateinit var btnToggleNuevaContrasena: android.widget.ImageView
+    private lateinit var btnToggleConfirmarContrasena: android.widget.ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recuperar_contrasena)
@@ -92,6 +96,9 @@ class RecuperarContrasenaActivity : AppCompatActivity() {
     }
 
     private fun enlazarVistas() {
+        btnToggleNuevaContrasena = findViewById(R.id.btnToggleNuevaContrasena)
+        btnToggleConfirmarContrasena = findViewById(R.id.btnToggleConfirmarContrasena)
+
         // Pasos contenedores
         layoutPaso1 = findViewById(R.id.layoutPaso1)
         layoutPaso2 = findViewById(R.id.layoutPaso2)
@@ -148,19 +155,35 @@ class RecuperarContrasenaActivity : AppCompatActivity() {
             val correo = etCorreo.text.toString().trim()
 
             if (!validarCorreo(correo)) {
-                etCorreo.error = "Ingresa un correo institucional válido (@utp.ac.pa)"
+                etCorreo.error = "Ingresa un correo válido"
                 return@setOnClickListener
             }
 
             btnEnviarInstrucciones.isEnabled = false
-            btnEnviarInstrucciones.text = "Enviando..."
+            btnEnviarInstrucciones.text = "Verificando..."
 
             scope.launch {
-                delay(1200)
+                // Verificar si el correo existe en la BD
+                val usuario = withContext(Dispatchers.IO) {
+                    BaseDeDatos.obtenerInstancia(applicationContext)
+                        .daoUsuario()
+                        .buscarPorCorreo(correo)
+                }
+
+                if (usuario == null) {
+                    // No existe → mostrar error y no avanzar
+                    etCorreo.error = "Este correo no está registrado"
+                    btnEnviarInstrucciones.isEnabled = true
+                    btnEnviarInstrucciones.text = "Enviar Enlace"
+                    return@launch
+                }
+
+                // Sí existe → generar OTP y avanzar
+                delay(800)
                 correoDestino = correo
                 otpGenerado = generarOtp()
                 btnEnviarInstrucciones.isEnabled = true
-                btnEnviarInstrucciones.text = "Enviar Instrucciones"
+                btnEnviarInstrucciones.text = "Enviar Enlace"
                 mostrarPaso(2)
             }
         }
@@ -240,7 +263,31 @@ class RecuperarContrasenaActivity : AppCompatActivity() {
         }
     }
 
+    private fun togglePasswordVisibility(
+        editText: android.widget.EditText,
+        imageView: android.widget.ImageView
+    ) {
+        val tipo = editText.inputType
+        if (tipo == android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+            editText.inputType = android.text.InputType.TYPE_CLASS_TEXT or
+                    android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+            imageView.setImageResource(R.drawable.ic_visibility_off)
+        } else {
+            editText.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            imageView.setImageResource(R.drawable.ic_visibility)
+        }
+        editText.setSelection(editText.text.length)
+    }
+
     private fun configurarPaso3() {
+        btnToggleNuevaContrasena.setOnClickListener {
+            togglePasswordVisibility(etNuevaContrasena, btnToggleNuevaContrasena)
+        }
+
+        btnToggleConfirmarContrasena.setOnClickListener {
+            togglePasswordVisibility(etConfirmarContrasena, btnToggleConfirmarContrasena)
+        }
+
         etNuevaContrasena.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, st: Int, c: Int, a: Int) {}
             override fun onTextChanged(s: CharSequence?, st: Int, b: Int, c: Int) {}

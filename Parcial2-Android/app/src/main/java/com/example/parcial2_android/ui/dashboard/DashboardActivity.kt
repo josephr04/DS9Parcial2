@@ -7,8 +7,11 @@ import androidx.lifecycle.lifecycleScope
 import com.example.parcial2_android.R
 import com.example.parcial2_android.data.local.BaseDeDatos
 import com.example.parcial2_android.databinding.ActivityDashboardBinding
+import com.example.parcial2_android.ui.auth.LoginActivity
 import com.example.parcial2_android.ui.incidencias.MisIncidenciasActivity
+import com.example.parcial2_android.ui.notificaciones.NotificacionesActivity
 import com.example.parcial2_android.ui.perfil.PerfilActivity
+import com.example.parcial2_android.utils.SessionManager
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -23,6 +26,16 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val sesion = SessionManager(applicationContext)
+        if (!sesion.estaLogueado) {
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+            return
+        }
+
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         cargarEstadisticas()
@@ -71,7 +84,15 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         fun pct(keyword: String) = mapa.entries
-            .firstOrNull { it.key.contains(keyword.uppercase()) }?.value ?: 0
+            .firstOrNull { entry ->
+                val normalizado = entry.key
+                    .replace("É", "E")
+                    .replace("Á", "A")
+                    .replace("Í", "I")
+                    .replace("Ó", "O")
+                    .replace("Ú", "U")
+                normalizado.contains(keyword.uppercase())
+            }?.value ?: 0
 
         val pctInfra    = pct("INFRAESTRUCTURA")
         val pctElectric = pct("ELECTR")
@@ -142,7 +163,11 @@ class DashboardActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_dashboard -> true
-                R.id.nav_notificaciones -> true
+                R.id.nav_notificaciones -> {
+                    startActivity(Intent(this, NotificacionesActivity::class.java))
+                    finish()
+                    true
+                }
                 R.id.nav_perfil -> {
                     startActivity(Intent(this, PerfilActivity::class.java))
                     finish()

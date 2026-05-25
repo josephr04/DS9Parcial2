@@ -90,7 +90,8 @@
                         android:inputType="textEmailAddress"
                         android:textSize="15sp"
                         android:textColor="#333333"
-                        android:imeOptions="actionNext" />
+                        android:imeOptions="actionNext"
+                        android:textColorHint="#999999"/>
 
                     <ImageView
                         android:layout_width="22dp"
@@ -155,7 +156,8 @@
                         android:inputType="textPassword"
                         android:textSize="15sp"
                         android:textColor="#333333"
-                        android:imeOptions="actionDone" />
+                        android:imeOptions="actionDone"
+                        android:textColorHint="#999999"/>
 
                     <ImageView
                         android:id="@+id/btnTogglePassword"

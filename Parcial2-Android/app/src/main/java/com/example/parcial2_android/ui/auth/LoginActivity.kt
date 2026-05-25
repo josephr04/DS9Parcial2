@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         database = BaseDeDatos.obtenerInstancia(this)
 
         // Verificar sesión activa
-        if (sessionManager.isSesionActiva()) {
+        if (sessionManager.estaLogueado) {
             irAMisIncidencias()
             return
         }
@@ -125,7 +125,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun irAMisIncidencias() {
-        startActivity(Intent(this, MisIncidenciasActivity::class.java))
+        val intent = Intent(this, MisIncidenciasActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
         finish()
     }
 

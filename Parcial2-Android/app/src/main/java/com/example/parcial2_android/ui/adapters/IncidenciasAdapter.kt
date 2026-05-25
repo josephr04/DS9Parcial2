@@ -61,14 +61,17 @@ class IncidenciasAdapter(
         }
 
         private fun cargarImagen(rutaFoto: String?) {
-            if (!rutaFoto.isNullOrBlank()) {
-                val archivo = File(rutaFoto)
+            // Tomar solo la primera ruta (pueden venir separadas por coma)
+            val primeraRuta = rutaFoto?.split(",")?.firstOrNull()?.trim()
+
+            if (!primeraRuta.isNullOrBlank()) {
+                val archivo = File(primeraRuta)
                 if (archivo.exists()) {
                     try {
                         val options = BitmapFactory.Options().apply {
                             inSampleSize = 2
                         }
-                        val bitmap = BitmapFactory.decodeFile(rutaFoto, options)
+                        val bitmap = BitmapFactory.decodeFile(primeraRuta, options)
                         if (bitmap != null) {
                             binding.ivCategoriaImagen.setImageBitmap(bitmap)
                             return

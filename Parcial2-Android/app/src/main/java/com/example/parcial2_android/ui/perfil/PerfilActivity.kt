@@ -13,6 +13,7 @@ import com.example.parcial2_android.ui.auth.LoginActivity
 import com.example.parcial2_android.ui.dashboard.DashboardActivity
 import com.example.parcial2_android.ui.incidencias.MisIncidenciasActivity
 import com.example.parcial2_android.ui.incidencias.NuevaIncidenciaActivity
+import com.example.parcial2_android.ui.notificaciones.NotificacionesActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -101,7 +102,8 @@ class PerfilActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_notificaciones -> {
-                    // startActivity(Intent(this, NotificacionesActivity::class.java))
+                    startActivity(Intent(this, NotificacionesActivity::class.java))
+                    finish()
                     true
                 }
                 R.id.nav_perfil -> true // ya estamos aquí
