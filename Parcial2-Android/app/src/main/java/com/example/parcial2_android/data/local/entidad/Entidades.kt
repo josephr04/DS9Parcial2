@@ -110,15 +110,12 @@ data class EntidadIncidencia(
     @ColumnInfo(name = "descripcion")
     val descripcion: String,
 
-    /** "BAJA" | "MEDIA" | "ALTA" | "CRITICA" */
     @ColumnInfo(name = "prioridad")
     val prioridad: String = "MEDIA",
 
-    /** "PENDIENTE" | "EN_PROCESO" | "RESUELTA" | "RECHAZADA" */
     @ColumnInfo(name = "estado")
     val estado: String = "PENDIENTE",
 
-    /** Ruta absoluta local a la imagen comprimida (JPG/PNG, máx 5 MB). */
     @ColumnInfo(name = "ruta_foto")
     val rutaFoto: String? = null,
 
@@ -128,14 +125,12 @@ data class EntidadIncidencia(
     @ColumnInfo(name = "longitud")
     val longitud: Double? = null,
 
-    /** Se asigna automáticamente al crear la incidencia. */
     @ColumnInfo(name = "creado_en")
     val creadoEn: String,
 
     @ColumnInfo(name = "actualizado_en")
     val actualizadoEn: String,
 
-    /** false mientras no se haya sincronizado con el servidor remoto. */
     @ColumnInfo(name = "esta_sincronizado")
     val estaSincronizado: Boolean = false
 )

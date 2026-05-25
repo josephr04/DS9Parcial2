@@ -18,4 +18,11 @@
     <color name="fortaleza_regular">#FB8C00</color>
     <color name="fortaleza_aceptable">#7CB342</color>
     <color name="fortaleza_segura">#2E7D32</color>
+
+    <color name="purple_primary">#6A0DAD</color>
+    <color name="purple_light">#9B59B6</color>
+    <color name="purple_bg">#F5F0F8</color>
+    <color name="purple_input_bg">#F8F0FF</color>
+    <color name="purple_stroke">#E0D0F0</color>
+    <color name="red_error">#FF4444</color>
 </resources>

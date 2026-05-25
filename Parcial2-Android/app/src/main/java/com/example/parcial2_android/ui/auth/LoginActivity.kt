@@ -10,12 +10,10 @@ import com.example.parcial2_android.databinding.ActivityLoginBinding
 import com.example.parcial2_android.data.local.BaseDeDatos
 import com.example.parcial2_android.utils.HashHelper
 import com.example.parcial2_android.utils.SessionManager
-import com.example.parcial2_android.ui.auth.RegistroActivity  // ← AGREGA ESTA LÍNEA
+import com.example.parcial2_android.ui.incidencias.MisIncidenciasActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.UUID
 
 class LoginActivity : AppCompatActivity() {
@@ -34,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         // Verificar sesión activa
         if (sessionManager.isSesionActiva()) {
-            irAlMain()
+            irAMisIncidencias()
             return
         }
 
@@ -47,7 +45,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.txtOlvideClave.setOnClickListener {
-            // Recuperación de contraseña simulada
             startActivity(Intent(this, RecuperarContrasenaActivity::class.java))
         }
 
@@ -72,7 +69,6 @@ class LoginActivity : AppCompatActivity() {
         val correo = binding.etCorreo.text.toString().trim()
         val password = binding.etPassword.text.toString()
 
-        // Validaciones
         if (correo.isEmpty()) {
             binding.etCorreo.error = "El correo es requerido"
             return
@@ -88,7 +84,6 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // Bloquear UI mientras se valida
         binding.btnIniciarSesion.isEnabled = false
         binding.progressBar.visibility = android.view.View.VISIBLE
 
@@ -105,7 +100,6 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 if (HashHelper.verificarContrasena(password, usuario.contrasenaHash)) {
-                    // Login exitoso
                     val token = UUID.randomUUID().toString()
                     val expira = (System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000L).toString()
 
@@ -113,10 +107,7 @@ class LoginActivity : AppCompatActivity() {
                         database.daoUsuario().actualizarTokenSesion(usuario.id, token, expira)
                     }
 
-                    // Guardar sesión en SharedPreferences solo si marcó "Mantener sesión"
-                    if (binding.chkMantenerSesion.isChecked) {
-                        sessionManager.guardarSesion(usuario.id, usuario.correo, token)
-                    }
+                    sessionManager.guardarSesion(usuario.id, usuario.correo, token)
 
                     Toast.makeText(
                         this@LoginActivity,
@@ -124,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    irAlMain()
+                    irAMisIncidencias()
                 } else {
                     binding.etPassword.error = "Contraseña incorrecta"
                     Toast.makeText(this@LoginActivity, "Contraseña incorrecta", Toast.LENGTH_SHORT).show()
@@ -133,12 +124,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun irAlMain() {
-        startActivity(android.content.Intent(this, com.example.parcial2_android.ui.main.MainActivity::class.java))
+    private fun irAMisIncidencias() {
+        startActivity(Intent(this, MisIncidenciasActivity::class.java))
         finish()
     }
 
     companion object {
-        fun getIntent(context: android.content.Context) = android.content.Intent(context, LoginActivity::class.java)
+        fun getIntent(context: android.content.Context) = Intent(context, LoginActivity::class.java)
     }
 }

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F0F8">
+
+    <!-- APP BAR -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:elevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Logo UTP"
+                android:src="@drawable/logo_utp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Mis Incidencias"
+                android:textColor="#6A0DAD"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- CONTENT -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="72dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <!-- BUSCADOR -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBuscar"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxStrokeColor="#6A0DAD"
+                app:boxStrokeWidth="1.5dp"
+                app:startIconDrawable="@drawable/ic_search"
+                app:startIconTint="#9B59B6">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBuscar"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:hint="Buscar incidencia..."
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:textSize="14sp"
+                    android:background="@null"
+                    android:textColor="#222222"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- LABEL ESTADO -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="ESTADO"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:textColor="#6A0DAD" />
+
+        <!-- CHIPS ESTADO -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Todas"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    android:checked="true"
+                    app:chipBackgroundColor="#6A0DAD"
+                    app:chipStrokeColor="#6A0DAD"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#FFFFFF" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPendiente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Pendiente"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipEnRevision"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="En revisión"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipResuelta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="Resuelta"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- LABEL PRIORIDAD -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:text="PRIORIDAD"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:textColor="#6A0DAD" />
+
+        <!-- CHIPS PRIORIDAD -->
+        <!-- CHIPS PRIORIDAD -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginTop="0dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Chip TODAS para prioridad -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTodasPrioridad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Todas"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    android:checked="true"
+                    app:chipBackgroundColor="#6A0DAD"
+                    app:chipStrokeColor="#6A0DAD"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#FFFFFF" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAlta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Alta"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipMedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Media"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBaja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:text="Baja"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:checkable="true"
+                    app:chipBackgroundColor="#FFFFFF"
+                    app:chipStrokeColor="#D1B3E8"
+                    app:chipStrokeWidth="1.5dp"
+                    app:chipCornerRadius="20dp"
+                    android:textColor="#6A0DAD" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- LISTA de incidencias -->
+        <!--
+            ✅ FIX: eliminado app:layoutManager del XML para evitar
+            duplicado con el LinearLayoutManager asignado en código.
+        -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvIncidencias"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false" />
+
+        <!-- ESTADO VACÍO -->
+        <LinearLayout
+            android:id="@+id/llEstadoVacio"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/ic_empty_state"
+                android:alpha="0.3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="No hay incidencias"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#6A0DAD"
+                android:alpha="0.6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Toca el botón para crear una nueva"
+                android:textSize="13sp"
+                android:textColor="#888888" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabNuevaIncidencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="120dp"
+        android:text="Nueva Incidencia"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:icon="@drawable/ic_add"
+        app:iconTint="@android:color/white"
+        app:backgroundTint="#6A0DAD"
+        app:cornerRadius="24dp"
+        app:elevation="6dp" />
+
+    <!-- BOTTOM NAV -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        app:menu="@menu/menu_bottom_nav"
+        app:itemActiveIndicatorStyle="@style/ActiveIndicatorStyle"
+        app:itemIconTint="@color/nav_icon_color"
+        app:itemTextColor="@color/nav_text_color"
+        app:labelVisibilityMode="labeled" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

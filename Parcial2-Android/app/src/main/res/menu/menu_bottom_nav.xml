@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_incidencias"
+        android:icon="@drawable/ic_nav_incidencias"
+        android:title="Incidencias" />
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_notificaciones"
+        android:icon="@drawable/ic_notificaciones"
+        android:title="Notificaciones" />
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/ic_nav_perfil"
+        android:title="Perfil" />
+
+</menu>

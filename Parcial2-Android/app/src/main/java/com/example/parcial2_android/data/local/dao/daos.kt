@@ -75,6 +75,8 @@ interface DaoCategoria {
 // ─────────────────────────────────────────────
 @Dao
 interface DaoIncidencia {
+    @Query("SELECT EXISTS(SELECT 1 FROM categorias WHERE id = :categoriaId)")
+    suspend fun verificarCategoriaExiste(categoriaId: Int): Boolean
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertar(incidencia: EntidadIncidencia): Long

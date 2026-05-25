@@ -9,6 +9,7 @@ import com.example.parcial2_android.data.local.dao.*
 import com.example.parcial2_android.data.local.entidad.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 @Database(
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
         EntidadIncidencia::class,
         EntidadHistorialCambio::class
     ],
-    version = 1,
+    version = 5,  // ← Aumenta la versión
     exportSchema = true
 )
 abstract class BaseDeDatos : RoomDatabase() {
@@ -29,7 +30,6 @@ abstract class BaseDeDatos : RoomDatabase() {
     abstract fun daoHistorialCambio(): DaoHistorialCambio
 
     companion object {
-
         @Volatile
         private var INSTANCIA: BaseDeDatos? = null
 
@@ -41,72 +41,48 @@ abstract class BaseDeDatos : RoomDatabase() {
                     "incidencias_utp.db"
                 )
                     .addCallback(CallbackPrepoblar())
-                    .fallbackToDestructiveMigration()
+                    .fallbackToDestructiveMigration()  // ← IMPORTANTE: Mantén esto
                     .build()
-
                 INSTANCIA = instancia
                 instancia
             }
         }
     }
 
-    /**
-     * Inserta las 6 categorias base del enunciado la primera vez
-     * que se crea la base de datos.
-     */
     private class CallbackPrepoblar : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCIA?.let { baseDatos ->
                 CoroutineScope(Dispatchers.IO).launch {
-                    baseDatos.daoCategoria().insertarTodas(categoriasPredeterminadas())
+                    // Verificar si ya hay categorías
+                    val count = baseDatos.daoCategoria().obtenerTodas().firstOrNull()?.size ?: 0
+                    if (count == 0) {
+                        baseDatos.daoCategoria().insertarTodas(categoriasPredeterminadas())
+                    }
+                }
+            }
+        }
+
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            INSTANCIA?.let { baseDatos ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    // Asegurar que las categorías existen incluso en onOpen
+                    val count = baseDatos.daoCategoria().obtenerTodas().firstOrNull()?.size ?: 0
+                    if (count == 0) {
+                        baseDatos.daoCategoria().insertarTodas(categoriasPredeterminadas())
+                    }
                 }
             }
         }
 
         private fun categoriasPredeterminadas() = listOf(
-            EntidadCategoria(
-                id = 1,
-                nombre = "Infraestructura danada",
-                descripcion = "Danos en paredes, pisos, techos, mobiliario",
-                icono = "construction",
-                color = "#795548"
-            ),
-            EntidadCategoria(
-                id = 2,
-                nombre = "Problemas electricos",
-                descripcion = "Cortos, tomacorrientes, iluminacion",
-                icono = "electrical_services",
-                color = "#F9A825"
-            ),
-            EntidadCategoria(
-                id = 3,
-                nombre = "Equipos de laboratorio",
-                descripcion = "Equipos defectuosos o fuera de servicio",
-                icono = "science",
-                color = "#1565C0"
-            ),
-            EntidadCategoria(
-                id = 4,
-                nombre = "Fallas de conectividad",
-                descripcion = "Wi-Fi, red institucional, puntos de acceso",
-                icono = "wifi_off",
-                color = "#6A1B9A"
-            ),
-            EntidadCategoria(
-                id = 5,
-                nombre = "Problemas de seguridad",
-                descripcion = "Puertas, cerraduras, vigilancia, accesos",
-                icono = "security",
-                color = "#B71C1C"
-            ),
-            EntidadCategoria(
-                id = 6,
-                nombre = "Emergencias academicas",
-                descripcion = "Situaciones que afectan actividades academicas",
-                icono = "school",
-                color = "#2E7D32"
-            )
+            EntidadCategoria(id = 1, nombre = "Infraestructura dañada", descripcion = "Daños en paredes, pisos, techos, mobiliario", icono = "construction", color = "#795548"),
+            EntidadCategoria(id = 2, nombre = "Problemas eléctricos", descripcion = "Cortos, tomacorrientes, iluminacion", icono = "electrical_services", color = "#F9A825"),
+            EntidadCategoria(id = 3, nombre = "Equipos de laboratorio", descripcion = "Equipos defectuosos o fuera de servicio", icono = "science", color = "#1565C0"),
+            EntidadCategoria(id = 4, nombre = "Fallas de conectividad", descripcion = "Wi-Fi, red institucional, puntos de acceso", icono = "wifi_off", color = "#6A1B9A"),
+            EntidadCategoria(id = 5, nombre = "Problemas de seguridad", descripcion = "Puertas, cerraduras, vigilancia, accesos", icono = "security", color = "#B71C1C"),
+            EntidadCategoria(id = 6, nombre = "Emergencias académicas", descripcion = "Situaciones que afectan actividades academicas", icono = "school", color = "#2E7D32")
         )
     }
 }

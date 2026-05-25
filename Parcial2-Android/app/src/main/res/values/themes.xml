@@ -19,4 +19,16 @@
 
     <style name="Theme.Parcial2Android" parent="Base.Theme.Parcial2Android" />
 
+    <style name="ActiveIndicatorStyle">
+        <item name="android:color">#7B2FBE</item>
+        <item name="shapeAppearance">@style/ActiveIndicatorShape</item>
+        <item name="android:width">80dp</item>
+        <item name="android:height">36dp</item>
+    </style>
+
+    <style name="ActiveIndicatorShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 </resources>
